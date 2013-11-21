@@ -1,6 +1,12 @@
 var loc = window.location.toString()
 if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
     console.log( 'root page' );
+
+    // Open home page links and comments in new windows.
+    $()
+        .add( '.title > a' )
+        .add( '.subtext a[href^=item\\?id\\=]' )
+            .prop( 'target', '_blank' );
 }
 else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
     console.log( 'item page' );
