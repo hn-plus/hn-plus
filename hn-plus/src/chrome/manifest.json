@@ -17,7 +17,6 @@
             "js/content.js"
         ],
         "matches": [
-            "http://news.ycombinator.com/*",
             "https://news.ycombinator.com/*"
         ],
         "run_at": "document_end"
