@@ -1,3 +1,12 @@
+var loc = window.location.toString()
+if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
+    console.log( 'root page' );
+}
+else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
+    console.log( 'item page' );
+
+    // Add comment folding.
+
 var collapsedIcon = "\u229E"; // Squared Plus ("⊞")
 var expandedIcon = "\u229F"; // Squared Minus ("⊟")
 
@@ -106,3 +115,7 @@ $( 'body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr' ).e
                 }
             );
 });
+}
+else {
+    console.log( 'else' );
+}
