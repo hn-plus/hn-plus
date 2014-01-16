@@ -22,7 +22,7 @@ function compress_javascript_file($filepath_in, $filepath_out) {
 
     // Replace variables
     $find_and_replace = array(
-        '' => '',
+        // '{{ HTTP_HOST }}' => 'www.example.com',
     );
 
     $find = array_keys($find_and_replace);
