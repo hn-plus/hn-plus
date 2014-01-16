@@ -1,6 +1,7 @@
 <?php
 date_default_timezone_set('UTC');
 
+define('HEADER', '/*! Example v1.0.0 | (c) ' . date('Y') . ' Example, Inc. | example.com/license */' . "\n");
 
 function normalize($s) {
     // Normalize line endings
@@ -102,8 +103,10 @@ function compress_javascript_file($filepath_in, $filepath_out) {
         $data[] = $line;
     }
 
-    //var_dump($data);
     $data = implode("\n", $data);
+
+    $data = HEADER . $data;
+
     return file_put_contents($filepath_out, $data);
 }
 
@@ -170,6 +173,9 @@ function compress_css_file($filepath_in, $filepath_out) {
 
     // Combine lines
     $data = implode("\n", $data);
+
+    // Add header
+    $data = HEADER . $data;
 
     return file_put_contents($filepath_out, $data);
 }
