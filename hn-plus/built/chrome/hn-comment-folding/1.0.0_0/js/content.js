@@ -1,3 +1,4 @@
+/*! Example v1.0.0 | (c) 2014 Example, Inc. | example.com/license */
 var loc = window.location.toString()
 if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
     $()
