@@ -232,5 +232,5 @@ foreach ($javascript_files as $source => $destination) {
 
 // Copy files
 copy('../src/chrome/background.html', '../built/chrome/hn-comment-folding/1.0.0_0/background.html');
-copy('../src/chrome/popup.html', '../built/chrome/hn-comment-folding/1.0.0_0/popup.html');
-copy('../src/chrome/manifest.json', '../built/chrome/hn-comment-folding/1.0.0_0/manifest.json');
+copy('../src/chrome/popup.html',      '../built/chrome/hn-comment-folding/1.0.0_0/popup.html');
+copy('../src/chrome/manifest.json',   '../built/chrome/hn-comment-folding/1.0.0_0/manifest.json');
