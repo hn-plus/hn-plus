@@ -1,4 +1,10 @@
 /*! Example v1.0.0 | (c) 2014 Example, Inc. | example.com/license */
+body {
+  margin: 0;
+}
+body center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table {
+  padding: 0 15px;
+}
 table {
   width: 100%;
 }
