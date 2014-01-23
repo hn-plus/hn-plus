@@ -50,9 +50,39 @@ body > center {
 body > center > table {
   width: 100%;
 }
-body > center > table > tbody tr:nth-of-type(1) td {
+body > center > table > tbody > tr:nth-of-type(1) > td {
   background-color: #f6f6ef;
 }
-body > center > table > tbody tr:nth-of-type(1) td table tbody tr td:nth-of-type(1) {
+body > center > table > tbody > tr:nth-of-type(1) > td > table > tbody > tr > td:nth-of-type(1) {
   padding: 4px;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr {
+  outline: 1px solid red;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table {
+  position: relative;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) {
+  background-color: #00ff00;
+  position: relative;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) > center > span {
+  background-color: orange;
+  bottom: 0;
+  left: -1000px;
+  position: absolute;
+  top: 0;
+  width: 1000px;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) > center > span:hover {
+  background-color: #ccc;
+  cursor: pointer;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) {
+  outline: 1px solid lime;
+}
+body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) .comment {
+  font-family: Trebuchet MS;
+  font-size: 11pt;
+  text-rendering: optimizeLegibility;
 }
