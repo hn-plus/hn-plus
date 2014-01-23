@@ -1,3 +1,4 @@
+/*
 var loc = window.location.toString()
 if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
     console.log( 'root page' );
@@ -8,12 +9,15 @@ if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
         .add( '.subtext a[href^=item\\?id\\=]' )
             .prop( 'target', '_blank' );
 }
-else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
+else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*    /) ) {
     console.log( 'item page' );
 
     // Add comment folding.
     var collapsedIcon = "\u229E"; // Squared Plus ("⊞")
     var expandedIcon = "\u229F"; // Squared Minus ("⊟")
+
+    /*
+    $( '.votearrow' ).removeClass( 'votearrow' );
 
     // /html/body/center/table/tbody/tr[3]/td/table[2]
     $( 'body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr' ).each(function() {
@@ -23,19 +27,7 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
                 'position' : 'relative'
             })
             .append([
-                '<a',
-                    ' href=""',
-                    ' style="',
-                        'border-right: 1px solid orange;',
-                        'bottom: 0;',
-                        'left: -500px;', // -19px;
-                        'padding-right: 5px;',
-                        'position: absolute;',
-                        'right: 15px;',
-                        'text-align: right;',
-                        'top: -2px;',
-                    '"',
-                    '>',
+                '<a class="_hn-plus-link" href="">',
                     expandedIcon,
                 '</a>',
             ''].join( '' ))
@@ -120,7 +112,9 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
                     }
                 );
     });
+    * /
 }
 else {
     console.log( 'else' );
 }
+*/
