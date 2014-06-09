@@ -1,5 +1,4 @@
-/*
-var loc = window.location.toString()
+var loc = window.location.toString();
 if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
     console.log( 'root page' );
 
@@ -9,112 +8,106 @@ if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
         .add( '.subtext a[href^=item\\?id\\=]' )
             .prop( 'target', '_blank' );
 }
-else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*    /) ) {
+else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
     console.log( 'item page' );
 
-    // Add comment folding.
-    var collapsedIcon = "\u229E"; // Squared Plus ("⊞")
-    var expandedIcon = "\u229F"; // Squared Minus ("⊟")
+    function collapseChildren( $commentWrapper, indentation ) {
+        console.info( 'collapseChildren', $commentWrapper, indentation );
 
-    /*
-    $( '.votearrow' ).removeClass( 'votearrow' );
+        var collapsed = $commentWrapper.data( 'collapsed' );
+        console.log( 'collapsed', collapsed );
 
-    // /html/body/center/table/tbody/tr[3]/td/table[2]
-    $( 'body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr' ).each(function() {
-        var $tr = $(this); // Comment row.
-        $tr.find( 'table:first > tbody > tr > td[valign]' )
-            .css({
-                'position' : 'relative'
-            })
-            .append([
-                '<a class="_hn-plus-link" href="">',
-                    expandedIcon,
-                '</a>',
-            ''].join( '' ))
-            .find( 'a' )
-                .click(function( event ) {
-                    event.preventDefault();
+        var $parent = $commentWrapper.find( 'td > table > tbody > tr' );
+        console.log( 'parent', $parent );
 
-                    var collapsed = $(this).data( 'collapsed' );
-                    var indentation = $(this).parents( 'td' ).prev().find( 'img' ).prop( 'width' );
+        var $spacer = $parent.find( 'td:first' )
+        console.log( 'spacer', $spacer );
 
-                    var $parent = $(this).parents( 'tr' );
-                    var $tdUpVote = $parent.find( '> td[valign]' );
-                    var $center = $tdUpVote.find( '> center' );
+        var collapsedIcon = "\u229E"; // Squared Plus ("⊞")
+        var expandedIcon = "\u229F"; // Squared Minus ("⊟")
 
-                    if ( ! collapsed ) {
-                        $center.css({
-                            'pointer-events' : 'none',
-                            'opacity' : '0'
-                        });
+        var $collapsible = $spacer.find( 'span' );
+        if ( ! $collapsible.length ) {
+            $spacer.append( $( '<span>' ) );
+            $spacer.css( 'display', 'block' ); // FIXME: Move to css.
+            $spacer.css( 'position', 'relative' ); // FIXME: Move to css.
+            $collapsible = $spacer.find( 'span' );
+            $collapsible.css( 'position', 'absolute' ); // FIXME: Move to css.
+            $collapsible.css( 'top', '-5px' ); // FIXME: Move to css.
+            $collapsible.css( 'right', '0' ); // FIXME: Move to css.
+            $collapsible.css( 'font-size', '27px' ); // FIXME: Move to css.
+            $collapsible.css( 'opacity', '.5' ); // FIXME: Move to css.
+        }
 
-                        $tr
-                            .find( '.comment' )
-                                .css({
-                                    'background-color' : '#e0e0e0',
-                                    'display' : 'block',
-                                    'height' : '16px',
-                                    'opacity' : '.5',
-                                    'overflow' : 'hidden'
-                                })
-                            .next()
-                                .hide();
+        if ( collapsed ) {
+            $collapsible.text( expandedIcon );
+        }
+        else {
+            $collapsible.text( collapsedIcon );
+        }
 
-                        $(this).text( collapsedIcon );
-                        $(this).data( 'collapsed', true );
-                    }
-                    else {
-                        $center.css({
-                            'pointer-events' : 'auto',
-                            'opacity' : '1'
-                        });
+        var $next = $commentWrapper.next();
+        while ( $next.length ) {
+            var nextIndentation = $next.find( 'td > table > tbody > tr > td:first > img' ).prop( 'width' );
+            if ( ! ( nextIndentation > indentation ) ) {
+                break;
+            }
 
-                        $tr
-                            .find( '.comment' )
-                                .css({
-                                    'background-color' : 'transparent',
-                                    'height' : 'auto',
-                                    'opacity' : '1',
-                                    'overflow' : 'visible'
-                                })
-                            .next()
-                                .show();
+            if ( collapsed ) {
+                $next.show();
+            }
+            else {
+                $next.hide();
+            }
 
-                        $(this).text( expandedIcon );
-                        $(this).data( 'collapsed', false );
-                    }
+            $next = $next.next();
+        }
 
-                    var $next = $tr.next();
-                    while ( $next.length ) {
-                        // Collapse next
-                        var nextIndentation = $next.find( 'td > table > tbody > tr > td:first > img' ).prop( 'width' );
-                        if ( nextIndentation > indentation ) {
-                            if ( collapsed ) {
-                                $next.show();
-                            }
-                            else {
-                                $next.hide();
-                            }
+        $commentWrapper.data( 'collapsed', ! collapsed );
+    }
 
-                            $next = $next.next();
-                        }
-                        else {
-                            break;
-                        }
-                    }
-                })
-                .hover(
-                    function() {
-                        $(this).css({ 'background-color' : '#ccc' });
-                    },
-                    function() {
-                        $(this).css({ 'background-color' : 'transparent' });
-                    }
-                );
+    var commentsSelector = 'html > body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr';
+    $( commentsSelector ).each(function() {
+        var $commentWrapper = $(this);
+        console.info( 'comment wrapper', $commentWrapper );
+
+        var $parent = $commentWrapper.find( 'td > table > tbody > tr' );
+        console.log( 'parent', $parent );
+
+        var $spacer = $parent.find( 'td:first' )
+        console.log( 'spacer', $spacer );
+
+        var indentation = $spacer.find( 'img' ).prop( 'width' );
+        console.log( 'indentation', indentation );
+
+        var $vote = $parent.find( 'td[valign]' )
+        console.log( 'vote', $vote );
+
+        var $comment = $parent.find( 'td:last' )
+        console.log( 'comment', $comment );
+
+        var $commentBody = $comment.find( 'span.comment' );
+        $commentBody.click(function( event ) {
+            console.log( 'comment body clicked', $(this) );
+
+            if ( $( event.target ).is( 'a' ) ) {
+                console.log( 'link in comment body clicked ');
+                return;
+            }
+
+            collapseChildren( $commentWrapper, indentation );
+        });
+        $commentBody.hover(function() {
+            $(this).parent( 'td.default' ).css( 'background-color', '#e0e0e0' );
+            $(this).css( 'cursor', 'pointer' ); // FIXME: Maybe move to css.
+            $(this).css( 'display', 'block' ); // FIXME: Move to css.
+        }, function() {
+            $(this).parent( 'td.default' ).css( 'background-color', '' );
+        });
+
+        console.log( '---' );
     });
-    * /
 }
 else {
     console.log( 'else' );
 }
-*/
