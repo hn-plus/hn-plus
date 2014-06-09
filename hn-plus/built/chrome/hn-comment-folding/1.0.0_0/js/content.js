@@ -20,8 +20,8 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
             $spacer.css( 'position', 'relative' ); // FIXME: Move to css.
             $collapsible = $spacer.find( 'span' );
             $collapsible.css( 'position', 'absolute' ); // FIXME: Move to css.
-            $collapsible.css( 'top', '-5px' ); // FIXME: Move to css.
-            $collapsible.css( 'right', '0' ); // FIXME: Move to css.
+            $collapsible.css( 'bottom', '0' ); // FIXME: Move to css.
+            $collapsible.css( 'right', '-19px' ); // FIXME: Move to css.
             $collapsible.css( 'font-size', '27px' ); // FIXME: Move to css.
             $collapsible.css( 'opacity', '.5' ); // FIXME: Move to css.
         }

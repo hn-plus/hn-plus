@@ -1,87 +1,30 @@
 /*! Example v1.0.0 | (c) 2014 Example, Inc. | example.com/license */
-html, body, div, span, applet, object, iframe,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, big, cite, code,
-del, dfn, em, img, ins, kbd, q, s, samp,
-small, strike, strong, sub, sup, tt, var,
-b, u, i, center,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td,
-article, aside, canvas, details, embed,
-figure, figcaption, footer, header, hgroup,
-menu, nav, output, ruby, section, summary,
-time, mark, audio, video {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  font-size: 100%;
-  font: inherit;
-  vertical-align: baseline;
+html > body {
+  background-color: #f6f6ef;
 }
-article, aside, details, figcaption, figure,
-footer, header, hgroup, menu, nav, section {
-  display: block;
+html > body > center > table > tbody > tr:nth-of-type(1) > td {
+  background-color: transparent;
 }
-body {
-  line-height: 1;
+html > body > center > table > tbody > tr:nth-of-type(3) {
+  color: orange;
 }
-ol, ul {
-  list-style: none;
+html > body > center > table > tbody > tr:nth-of-type(3) > td {
+  color: violet;
 }
-blockquote, q {
-  quotes: none;
+html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr {
+  border: 1px solid red;
+  color: red;
 }
-blockquote:before, blockquote:after,
-q:before, q:after {
-  content: '';
-  content: none;
-}
-table {
+html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-body {
-  background-color: #f6f6ef;
+html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) {
+  border-left: 3px solid orange;
+  padding-bottom: 4px;
+  padding-left: 7px;
 }
-body > center {
-  padding: 1em 2em;
-}
-body > center > table {
-  width: 100%;
-}
-body > center > table > tbody > tr:nth-of-type(1) > td {
-  background-color: #f6f6ef;
-}
-body > center > table > tbody > tr:nth-of-type(1) > td > table > tbody > tr > td:nth-of-type(1) {
-  padding: 4px;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr {
-  outline: 1px solid red;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table {
-  position: relative;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) {
-  background-color: #00ff00;
-  position: relative;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) > center > span {
-  background-color: orange;
-  bottom: 0;
-  left: -1000px;
-  position: absolute;
-  top: 0;
-  width: 1000px;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(2) > center > span:hover {
-  background-color: #ccc;
-  cursor: pointer;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) {
-  outline: 1px solid lime;
-}
-body > center > table > tbody > tr:nth-of-type(4) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) .comment {
+html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) > span.comment {
   font-family: Trebuchet MS;
   font-size: 11pt;
   text-rendering: optimizeLegibility;

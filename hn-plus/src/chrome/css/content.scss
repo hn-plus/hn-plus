@@ -1,82 +1,55 @@
-@import "reset.inc.scss";
+html {
+    > body {
+        background-color: #f6f6ef;
 
-body {
-    background-color: #f6f6ef;
-
-    > center {
-        padding: 1em 2em;
-
-        > table {
-            width: 100%;
-
-            > tbody {
-                > tr:nth-of-type(1) {
-                    > td {
-                        background-color: #f6f6ef;
-
-                        > table {
-                            > tbody {
-                                > tr {
-                                    > td:nth-of-type(1) {
-                                        padding: 4px;
-                                    }
-                                }
-                            }
+        // html > body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr
+        > center {
+            > table {
+                > tbody {
+                    // Banner.
+                    > tr:nth-of-type(1) {
+                        > td {
+                            background-color: transparent;
                         }
                     }
-                }
 
-                > tr:nth-of-type(4) {
-                    > td {
-                        > table:nth-of-type(2) {
-                            > tbody {
-                                // Comment trs
-                                > tr {
-                                    outline: 1px solid red;
+                    > tr:nth-of-type(3) {
+                        color: orange;
+                        > td {
+                            color: violet;
+                            > table:nth-of-type(2) {
+                                > tbody {
+                                    // Comment rows.
+                                    > tr {
+                                        border: 1px solid red;
+                                        color: red;
 
-                                    > td {
-                                        > table {
-                                            position:relative;
+                                        > td {
+                                            > table {
+                                                border-collapse: collapse;
+                                                border-spacing: 0;
 
-                                            > tbody {
-                                                > tr {
-                                                    // Indentation td
-                                                    // /html/body/center/table/tbody/tr[4]/td/table[2]/tbody/tr[8]/td/table/tbody/tr/td[1]
-                                                    > td:nth-of-type(1) {
-                                                    }
-
-                                                    // Arrow td
-                                                    // /html/body/center/table/tbody/tr[4]/td/table[2]/tbody/tr[8]/td/table/tbody/tr/td[2]
-                                                    > td:nth-of-type(2) {
-                                                        background-color: #00ff00;
-                                                        position: relative;
-
-                                                        > center {
-                                                            > span {
-                                                                &:hover {
-                                                                    background-color: #ccc;
-                                                                    cursor: pointer;
-                                                                }
-
-                                                                background-color: orange;
-                                                                bottom: 0;
-                                                                left: -1000px;
-                                                                position: absolute;
-                                                                top: 0;
-                                                                width: 1000px;
-                                                            }
+                                                > tbody {
+                                                    > tr {
+                                                        // Spacer.
+                                                        > td:nth-of-type(1) {
                                                         }
-                                                    }
 
-                                                    // Comment d
-                                                    // /html/body/center/table/tbody/tr[4]/td/table[2]/tbody/tr[8]/td/table/tbody/tr/td[3]
-                                                    > td:nth-of-type(3) {
-                                                        outline: 1px solid #00ff00;
+                                                        // Vote.
+                                                        > td:nth-of-type(2) {
+                                                        }
 
-                                                        .comment {
-                                                            font-family: Trebuchet MS;
-                                                            font-size: 11pt;
-                                                            text-rendering: optimizeLegibility;
+                                                        // Comment.
+                                                        > td:nth-of-type(3) {
+                                                            border-left: 3px solid orange;
+                                                            padding-bottom: 4px;
+                                                            padding-left: 7px;
+
+                                                            > span.comment {
+                                                                font-family: Trebuchet MS;
+                                                                font-size: 11pt;
+                                                                text-rendering: optimizeLegibility;
+                                                            }
                                                         }
                                                     }
                                                 }
