@@ -47,7 +47,7 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
         }
         $commentWrapper.data( 'collapsed', ! collapsed );
     }
-    var commentsSelector = 'html > body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr';
+    var commentsSelector = 'html > body > center > table > tbody > tr:nth-last-child(2) > td > table:last > tbody > tr';
     $( commentsSelector ).each(function() {
         var $commentWrapper = $(this);
         var $parent = $commentWrapper.find( 'td > table > tbody > tr' );

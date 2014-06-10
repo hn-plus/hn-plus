@@ -13,7 +13,8 @@ html {
                         }
                     }
 
-                    > tr:nth-of-type(3) {
+                    // Post (second-to-last table row).
+                    > tr:nth-last-child(2) {
                         color: orange;
                         > td {
                             color: violet;

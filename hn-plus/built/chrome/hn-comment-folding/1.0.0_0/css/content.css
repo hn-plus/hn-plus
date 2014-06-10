@@ -5,26 +5,26 @@ html > body {
 html > body > center > table > tbody > tr:nth-of-type(1) > td {
   background-color: transparent;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) {
+html > body > center > table > tbody > tr:nth-last-child(2) {
   color: orange;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) > td {
+html > body > center > table > tbody > tr:nth-last-child(2) > td {
   color: violet;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr {
+html > body > center > table > tbody > tr:nth-last-child(2) > td > table:nth-of-type(2) > tbody > tr {
   border: 1px solid red;
   color: red;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table {
+html > body > center > table > tbody > tr:nth-last-child(2) > td > table:nth-of-type(2) > tbody > tr > td > table {
   border-collapse: collapse;
   border-spacing: 0;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) {
+html > body > center > table > tbody > tr:nth-last-child(2) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) {
   border-left: 3px solid orange;
   padding-bottom: 4px;
   padding-left: 7px;
 }
-html > body > center > table > tbody > tr:nth-of-type(3) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) > span.comment {
+html > body > center > table > tbody > tr:nth-last-child(2) > td > table:nth-of-type(2) > tbody > tr > td > table > tbody > tr > td:nth-of-type(3) > span.comment {
   font-family: Trebuchet MS;
   font-size: 11pt;
   text-rendering: optimizeLegibility;

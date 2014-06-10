@@ -66,7 +66,7 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
         $commentWrapper.data( 'collapsed', ! collapsed );
     }
 
-    var commentsSelector = 'html > body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr';
+    var commentsSelector = 'html > body > center > table > tbody > tr:nth-last-child(2) > td > table:last > tbody > tr';
     $( commentsSelector ).each(function() {
         var $commentWrapper = $(this);
         console.info( 'comment wrapper', $commentWrapper );
@@ -87,6 +87,7 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
         console.log( 'comment', $comment );
 
         var $commentBody = $comment.find( 'span.comment' );
+        console.log( 'comment body', $commentBody );
         $commentBody.click(function( event ) {
             console.log( 'comment body clicked', $(this) );
 
