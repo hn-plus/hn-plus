@@ -229,7 +229,6 @@ $javascript_files = array(
     // source -> destination
     '../src/chrome/js/background.js' => '../built/chrome/hn-comment-folding/1.0.0_0/js/background.js',
     '../src/chrome/js/content.js'    => '../built/chrome/hn-comment-folding/1.0.0_0/js/content.js',
-    '../src/chrome/js/popup.js'      => '../built/chrome/hn-comment-folding/1.0.0_0/js/popup.js',
 );
 foreach ($javascript_files as $source => $destination) {
     $bytes = compress_javascript_file($source, $destination);
@@ -238,5 +237,4 @@ foreach ($javascript_files as $source => $destination) {
 
 // Copy files
 copy('../src/chrome/background.html', '../built/chrome/hn-comment-folding/1.0.0_0/background.html');
-copy('../src/chrome/popup.html',      '../built/chrome/hn-comment-folding/1.0.0_0/popup.html');
 copy('../src/chrome/manifest.json',   '../built/chrome/hn-comment-folding/1.0.0_0/manifest.json');
