@@ -5,6 +5,19 @@ if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
         .add( '.title > a' )
         .add( '.subtext a[href^=item\\?id\\=]' )
             .prop( 'target', '_blank' );
+    var $searchInput = $( '<input placeholder="Search" type="text" />' );
+    $searchInput.keypress(function( event ) {
+        if ( event.which === 13 ) {
+            window.location = 'https://hn.algolia.com/#!/all/forever/0/' + encodeURIComponent( $(this).val() );
+        }
+    });
+    $( '.pagetop:first' ).append( ' | ' );
+    $( '.pagetop:first' ).append( $searchInput );
+    $(document).keyup(function( event ) {
+        if ( event.keyCode === 191 ) {
+            $searchInput.focus();
+        }
+    });
 }
 else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
     function collapseChildren( $commentWrapper, indentation ) {
