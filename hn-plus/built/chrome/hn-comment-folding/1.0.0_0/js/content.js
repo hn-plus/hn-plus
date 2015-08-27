@@ -79,6 +79,31 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
         '';
     var head = document.getElementsByTagName( 'head' )[ '0' ];
     head.appendChild( style );
+    function moveToPosition( position ) {
+        console.log( 'moving to position', position );
+        var activeEntry = entries.get( position );
+        if ( activeEntry ) {
+            entries.removeClass( 'active' );
+            $(activeEntry).addClass( 'active' );
+            var activeEntryOffset = $(activeEntry).offset();
+            var activeEntryTop = activeEntryOffset.top;
+            var activeEntryBottom = activeEntryTop + $(activeEntry).height();
+            var scrollTop = $(window).scrollTop();
+            var newScrollTop = 0;
+            if ( activeEntryBottom > scrollTop + document.body.clientHeight ) {
+                newScrollTop = activeEntryTop;
+            } else if ( activeEntryTop < scrollTop ) {
+                newScrollTop = activeEntryBottom - document.body.clientHeight;
+            }
+            if ( newScrollTop ) {
+                console.info( 'animating to', newScrollTop );
+                $( 'html,body' ).stop().animate({
+                    'scrollTop': newScrollTop,
+                }, 400 );
+            }
+            console.log( '---' );
+        }
+    }
     var entries = $( '.athing' );
     var currentPosition = -1;
     $( document ).keyup(function( event ) {
@@ -100,28 +125,10 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
                     currentPosition = entries.length - 1;
                 }
             }
-            console.log( 'current position is now:', currentPosition );
-            var activeEntry = entries.get( currentPosition );
-            if ( activeEntry ) {
-                entries.removeClass( 'active' );
-                $(activeEntry).addClass( 'active' );
-                var activeEntryOffset = $(activeEntry).offset();
-                var activeEntryTop = activeEntryOffset.top;
-                var activeEntryBottom = activeEntryTop + $(activeEntry).height();
-                var scrollTop = $(window).scrollTop();
-                var newScrollTop = 0;
-                if ( activeEntryBottom > scrollTop + document.body.clientHeight ) {
-                    newScrollTop = activeEntryTop;
-                } else if ( activeEntryTop < scrollTop ) {
-                    newScrollTop = activeEntryBottom - document.body.clientHeight;
-                }
-                if ( newScrollTop ) {
-                    console.info( 'animating to', newScrollTop );
-                    $( 'html,body' ).stop().animate({
-                        'scrollTop': newScrollTop,
-                    }, 400 );
-                }
-                console.log( '---' );
+            moveToPosition( currentPosition );
+        } else if ( event.which === keyCode.G ) {
+            if ( event.shiftKey ) {
+                moveToPosition( entries.length - 1 );
             }
         } else if ( event.which === keyCode.ENTER ) {
             console.log( 'current position:', currentPosition );
