@@ -1,6 +1,6 @@
-/*! Example v1.0.0 | (c) 2014 Example, Inc. | example.com/license */
+/*! Example v1.0.0 | (c) 2015 Example, Inc. | example.com/license */
 var loc = window.location.toString();
-if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
+if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
     $()
         .add( '.title > a' )
         .add( '.subtext a[href^=item\\?id\\=]' )
@@ -18,8 +18,7 @@ if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
             $searchInput.focus();
         }
     });
-}
-else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
+} else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
     function collapseChildren( $commentWrapper, indentation ) {
         var collapsed = $commentWrapper.data( 'collapsed' );
         var $parent = $commentWrapper.find( 'td > table > tbody > tr' );
@@ -83,6 +82,5 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
             $(this).parent( 'td.default' ).css( 'background-color', '' );
         });
     });
-}
-else {
+} else {
 }

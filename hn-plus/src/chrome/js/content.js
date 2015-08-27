@@ -1,6 +1,6 @@
 var loc = window.location.toString();
-if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
-    console.log( 'root page' );
+if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
+    console.info( 'home page' );
 
     // Open home page links and comments in new windows.
     $()
@@ -23,9 +23,8 @@ if ( loc.match(/^https:\/\/news\.ycombinator\.com\/$/) ) {
             $searchInput.focus();
         }
     });
-}
-else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
-    console.log( 'item page' );
+} else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
+    console.info( 'item page' );
 
     function collapseChildren( $commentWrapper, indentation ) {
         console.info( 'collapseChildren', $commentWrapper, indentation );
@@ -124,7 +123,6 @@ else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
 
         console.log( '---' );
     });
-}
-else {
-    console.log( 'else' );
+} else {
+    console.info( 'other page' );
 }
