@@ -80,7 +80,21 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
     style.innerHTML =
         // Highlight active entry.
         '.athing.active {' +
-            'background-color: #9fc4e3' +
+            'background-color: #bbccff;' +
+        '}' +
+        '.athing > td {' +
+            'border-bottom: 1px solid transparent;' +
+            'border-top: 1px solid transparent;' +
+        '}' +
+        '.athing.active > td {' +
+            'border-bottom: 1px solid #888888;' +
+            'border-top: 1px solid #888888;' +
+        '}' +
+        '.athing.active > td:first-child {' +
+            'border-left: 1px solid #888888;' +
+        '}' +
+        '.athing.active > td:last-child {' +
+            'border-right: 1px solid #888888;' +
         '}' +
         '';
     var head = document.getElementsByTagName( 'head' )[ '0' ];
