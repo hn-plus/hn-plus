@@ -52,7 +52,15 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
     var links = $().add(homePageLinks).add(commentLinks);
     $( links ).each(function() {
         $(this).click(function( event ) {
+            console.log( event.target );
             event.preventDefault();
+            console.log( 'current position:', currentPosition );
+            if ( event.target.parentElement.classList.contains( 'title' ) ) {
+                currentPosition = entries.index( event.target.parentElement.parentElement );
+            } else {
+                currentPosition = entries.index( $( event.target ).parents( 'tr' ).prev() );
+            }
+            moveToPosition( currentPosition );
             chrome.runtime.sendMessage({
                 'action': 'chrome.tabs.create',
                 'createProperties': {
@@ -142,7 +150,9 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
             moveToPosition( currentPosition );
         } else if ( event.which === keyCode.G ) {
             if ( event.shiftKey ) {
-                moveToPosition( entries.length - 1 );
+                console.log( 'current position:', currentPosition );
+                currentPosition = entries.length - 1;
+                moveToPosition( currentPosition );
             }
         } else if ( event.which === keyCode.ENTER ) {
             console.log( 'current position:', currentPosition );
