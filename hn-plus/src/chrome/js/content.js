@@ -1,3 +1,14 @@
+function openBackgroundTab( url ) {
+    console.info( 'openBackgroundTab', url );
+    chrome.runtime.sendMessage({
+        'action': 'chrome.tabs.create',
+        'createProperties': {
+            'active': false,
+            'url': url,
+        },
+    });
+}
+
 var loc = window.location.toString();
 if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
     console.info( 'home page' );
@@ -63,13 +74,7 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
                 currentPosition = entries.index( $( event.target ).parents( 'tr' ).prev() );
             }
             moveToPosition( currentPosition );
-            chrome.runtime.sendMessage({
-                'action': 'chrome.tabs.create',
-                'createProperties': {
-                    'active': false,
-                    'url': $(this).prop( 'href' ),
-                },
-            });
+            openBackgroundTab( $(this).prop( 'href' ) );
         });
     });
 
@@ -175,8 +180,14 @@ if ( /^https:\/\/news\.ycombinator\.com\/$/.test( loc ) ) {
             }
         }
     });
-} else if ( loc.match(/^https:\/\/news\.ycombinator\.com\/item\?id=*/) ) {
+} else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( loc ) ) {
     console.info( 'item page' );
+
+    // Open title in background tab.
+    $( 'td[class="title"]:last > a' ).click(function( event ) {
+        event.preventDefault();
+        openBackgroundTab( $(this).prop( 'href' ) );
+    });
 
     function collapseChildren( $commentWrapper, indentation ) {
         console.info( 'collapseChildren', $commentWrapper, indentation );
