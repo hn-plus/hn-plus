@@ -4,6 +4,18 @@ html {
 
         // html > body > center > table > tbody > tr:eq(2) > td > table:last > tbody > tr
         > center {
+            > #hnmain {
+                > tbody {
+                    > tr:nth-child(3) {
+                        > td {
+                            > table:nth-of-type(2) {
+                                border: 2px solid #999;
+                            }
+                        }
+                    }
+                }
+            }
+
             > table {
                 > tbody {
                     // Banner.
