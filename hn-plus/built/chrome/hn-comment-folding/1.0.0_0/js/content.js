@@ -1,4 +1,4 @@
-/*! Example v1.0.0 | (c) 2015 Example, Inc. | example.com/license */
+/*! Example v1.0.0 | (c) 2016 Example, Inc. | example.com/license */
 var keyCode = {
     BACKSPACE: 8,
     COMMA: 188,
@@ -48,8 +48,7 @@ function openBackgroundTab( url ) {
     console.info( 'openBackgroundTab:', url );
     chrome.runtime.sendMessage({
         'action': 'chrome.tabs.create',
-        'createProperties': {
-            'active': false,
+        'data': {
             'url': url,
         },
     });

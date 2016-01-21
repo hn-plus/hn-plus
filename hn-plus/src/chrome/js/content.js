@@ -48,8 +48,7 @@ function openBackgroundTab( url ) {
     console.info( 'openBackgroundTab:', url );
     chrome.runtime.sendMessage({
         'action': 'chrome.tabs.create',
-        'createProperties': {
-            'active': false,
+        'data': {
             'url': url,
         },
     });
