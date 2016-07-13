@@ -1,3 +1,29 @@
+function openBackgroundTab(url) {
+    console.info('openBackgroundTab:', url);
+    chrome.runtime.sendMessage({
+        'action': 'chrome.tabs.create',
+        'data': {
+            'url': url,
+        },
+    });
+}
+
+var url = window.location.toString();
+
+if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
+    console.info('home page');
+
+    // Open page links in background tabs.
+    $('.itemlist a').each(function() {
+        $(this).click(function(event) {
+            console.log(event.target);
+            event.preventDefault();
+            var linkUrl = $(this).prop('href');
+            openBackgroundTab(linkUrl);
+        });
+    });
+}
+
 /*
 var keyCode = {
     BACKSPACE: 8,
@@ -44,16 +70,6 @@ var keyCode = {
     Y: 89,
     Z: 90,
 };
-
-function openBackgroundTab( url ) {
-    console.info('openBackgroundTab:', url);
-    chrome.runtime.sendMessage({
-        'action': 'chrome.tabs.create',
-        'data': {
-            'url': url,
-        },
-    });
-}
 
 var vimNavigation = {
     currentPosition: -1,
@@ -168,49 +184,9 @@ var vimNavigation = {
     },
 };
 
-var url = window.location.toString();
-console.log( 'url:', url );
 
 if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test( url ) ) {
-    console.info( 'home page' );
-
-    // Open home page links and comments in new background windows.
-    var homePageLinks = $( '.title > a' );
-    var commentLinks = $( '.subtext a[href^=item\\?id\\=]' );
-    var links = $().add(homePageLinks).add(commentLinks);
-    $( links ).each(function() {
-        $(this).click(function( event ) {
-            console.log( event.target );
-            event.preventDefault();
-            /*
-            console.log( 'current position:', currentPosition );
-            if ( event.target.parentElement.classList.contains( 'title' ) ) {
-                currentPosition = entries.index( event.target.parentElement.parentElement );
-            } else {
-                currentPosition = entries.index( $( event.target ).parents( 'tr' ).prev() );
-            }
-            moveToPosition( currentPosition );
-            * /
-            openBackgroundTab( $(this).prop( 'href' ) );
-        });
-    });
-
-    // Add search field.
-    var $searchInput = $( '<input placeholder="Search" type="text" />' );
-    $searchInput.keypress(function( event ) {
-        if ( event.which === keyCode.ENTER ) {
-            console.log( 'enter pressed', $(this).val() );
-            window.location = 'https://hn.algolia.com/#!/all/forever/0/' + encodeURIComponent( $(this).val() );
-        }
-    });
-    $( '.pagetop:first' ).append( ' | ' ).append( $searchInput ).parent().css({'white-space': 'nowrap'});
-
-    $( document ).keyup(function( event ) {
-        if ( event.which === keyCode.FORWARD_SLASH ) {
-            $searchInput.focus();
-        }
-    });
-
+    console.info('home page');
     vimNavigation.init( $( 'tr.athing > .title > a' ) );
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
     console.info( 'item page' );
@@ -325,7 +301,9 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test( url ) ) {
 }
 */
 
+// Remove existing stylesheet.
 var stylesheet = document.querySelector('link[rel="stylesheet"]');
 stylesheet.parentNode.removeChild(stylesheet);
 
+// Remove existing background color.
 document.querySelector('table[bgcolor]').removeAttribute('bgcolor');

@@ -1,4 +1,9 @@
 {
+  "background": {
+    "scripts": [
+      "js/background.js"
+    ]
+  },
   "content_scripts": [
     {
       "all_frames": true,
