@@ -45,7 +45,7 @@ var keyCode = {
     Z: 90,
 };
 function openBackgroundTab( url ) {
-    console.info( 'openBackgroundTab:', url );
+    console.info('openBackgroundTab:', url);
     chrome.runtime.sendMessage({
         'action': 'chrome.tabs.create',
         'data': {

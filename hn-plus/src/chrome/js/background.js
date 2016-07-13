@@ -1,6 +1,6 @@
-console.log( 'background.js' );
+console.log('background.js');
 
-chrome.runtime.onMessage.addListener(function( message, sender, sendResponse ) {
+chrome.runtime.onMessage.addListener(function(message, sender, sendResponse) {
     console.log('background message received:', message);
     console.log('sender:', sender);
     if ( message.action === 'chrome.tabs.create' ) {

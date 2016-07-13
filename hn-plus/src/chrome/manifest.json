@@ -1,11 +1,13 @@
 {
+    "background": {
+        "scripts": [
+            "js/background.js"
+        ]
+    },
     "name": "hn-plus",
     "version": "1.0.0",
     "manifest_version": 2,
     "description": "Hacker News Plus",
-    "background": {
-        "page": "background.html"
-    },
     "content_scripts": [ {
         "all_frames": true,
         "css" : [
