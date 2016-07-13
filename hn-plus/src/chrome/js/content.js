@@ -1,3 +1,4 @@
+/*
 var keyCode = {
     BACKSPACE: 8,
     COMMA: 188,
@@ -189,7 +190,7 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test( url ) ) {
                 currentPosition = entries.index( $( event.target ).parents( 'tr' ).prev() );
             }
             moveToPosition( currentPosition );
-            */
+            * /
             openBackgroundTab( $(this).prop( 'href' ) );
         });
     });
@@ -322,3 +323,9 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test( url ) ) {
 } else {
     console.info( 'other page' );
 }
+*/
+
+var stylesheet = document.querySelector('link[rel="stylesheet"]');
+stylesheet.parentNode.removeChild(stylesheet);
+
+document.querySelector('table[bgcolor]').removeAttribute('bgcolor');
