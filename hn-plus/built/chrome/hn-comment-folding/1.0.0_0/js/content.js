@@ -19,6 +19,22 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
             openBackgroundTab(linkUrl);
         });
     });
+} else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
+    console.info('item page');
+    $('#hnmain > tbody > tr:nth-child(3) > td > table:nth-child(1) a').click(function(event) {
+        event.preventDefault();
+        var linkUrl = $(this).prop('href');
+        openBackgroundTab(linkUrl);
+    });
+    $(document).click(function(event) {
+        var target = $(event.target);
+        if ( target.hasClass('comment') ||
+             target.parents('.comment').length ) {
+            var comment = target.parents('.athing');
+            var togg = comment.find('.togg');
+            togg.get(0).click();
+        }
+    });
 }
 // Remove existing stylesheet.
 var stylesheet = document.querySelector('link[rel="stylesheet"]');

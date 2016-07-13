@@ -12,6 +12,16 @@ html body > center > table > tbody > tr:first-child > td > table a {
 .sitestr {
   color: #999;
 }
+.noshow {
+  display: none;
+}
+span.comment:not(.noshow) {
+  display: block;
+  padding: 10px 10px 0;
+}
+span.comment:not(.noshow):hover {
+  background-color: #ddd;
+}
 .hnspecial-settings-menu-inner .hnspecial-settings-tip button, html .hnspecial-mark-all-as-read-container button, .hnspecial-fold-comment-button {
   font: inherit;
   border: none;
@@ -276,10 +286,7 @@ html a:hover {
 }
 html p {
   line-height: 1.5;
-  margin: 0;
-  margin-bottom: 1em;
   color: #555;
-  font-weight: 200;
   word-wrap: break-word;
 }
 html textarea, html input[type="text"] {

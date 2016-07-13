@@ -2,6 +2,7 @@
 // Modifications:
 // - :%s/.hnspecial-theme / /g
 // - Added custom styles section
+// - Modified rules for selector: html p { ... }
 
 // BEGIN custom styles.
 
@@ -23,6 +24,19 @@ html body > center > table > tbody > tr:first-child > td > table a {
 
 .sitestr {
     color: #999;
+}
+
+.noshow {
+    display: none;
+}
+
+span.comment:not(.noshow) {
+    display: block;
+    padding: 10px 10px 0;
+
+    &:hover {
+        background-color: #ddd;
+    }
 }
 
 // END custom styles.
@@ -340,10 +354,10 @@ html a:hover {
 
 html p {
     line-height: 1.5;
-    margin: 0;
-    margin-bottom: 1em;
+    // margin: 0;
+    // margin-bottom: 1em;
     color: #555;
-    font-weight: 200;
+    // font-weight: 200;
     word-wrap: break-word
 }
 

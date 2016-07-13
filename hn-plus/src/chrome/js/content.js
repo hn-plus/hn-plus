@@ -22,6 +22,26 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
             openBackgroundTab(linkUrl);
         });
     });
+} else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
+    console.info('item page');
+
+    // Open item links in background tab.
+    $('#hnmain > tbody > tr:nth-child(3) > td > table:nth-child(1) a').click(function(event) {
+        event.preventDefault();
+        var linkUrl = $(this).prop('href');
+        openBackgroundTab(linkUrl);
+    });
+
+    // Toggle comment collapse when comment is clicked.
+    $(document).click(function(event) {
+        var target = $(event.target);
+        if ( target.hasClass('comment') ||
+             target.parents('.comment').length ) {
+            var comment = target.parents('.athing');
+            var togg = comment.find('.togg');
+            togg.get(0).click();
+        }
+    });
 }
 
 /*
@@ -189,115 +209,9 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test( url ) ) {
     console.info('home page');
     vimNavigation.init( $( 'tr.athing > .title > a' ) );
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
-    console.info( 'item page' );
+    console.info('item page');
 
     vimNavigation.init( $( 'html > body > center > table > tbody > tr:eq(2) > td > table:eq(1) > tbody > tr.athing' ) );
-
-    // Open title in background tab.
-    $( 'td[class="title"]:last > a' ).click(function( event ) {
-        event.preventDefault();
-        openBackgroundTab( $(this).prop( 'href' ) );
-    });
-
-    function collapseChildren( $commentWrapper, indentation ) {
-        console.info( 'collapseChildren', $commentWrapper, indentation );
-
-        var collapsed = $commentWrapper.data( 'collapsed' );
-        console.log( 'collapsed', collapsed );
-
-        var $parent = $commentWrapper.find( 'td > table > tbody > tr' );
-        console.log( 'parent', $parent );
-
-        var $spacer = $parent.find( 'td:first' )
-        console.log( 'spacer', $spacer );
-
-        var collapsedIcon = "\u229E"; // Squared Plus ("⊞")
-        var expandedIcon = "\u229F"; // Squared Minus ("⊟")
-
-        var $collapsible = $spacer.find( 'span' );
-        if ( ! $collapsible.length ) {
-            $spacer.append( $( '<span>' ) );
-            $spacer.css( 'display', 'block' ); // FIXME: Move to css.
-            $spacer.css( 'position', 'relative' ); // FIXME: Move to css.
-            $collapsible = $spacer.find( 'span' );
-            $collapsible.css( 'position', 'absolute' ); // FIXME: Move to css.
-            $collapsible.css( 'bottom', '0' ); // FIXME: Move to css.
-            $collapsible.css( 'right', '-19px' ); // FIXME: Move to css.
-            $collapsible.css( 'font-size', '27px' ); // FIXME: Move to css.
-            $collapsible.css( 'opacity', '.5' ); // FIXME: Move to css.
-        }
-
-        if ( collapsed ) {
-            $collapsible.text( expandedIcon );
-        }
-        else {
-            $collapsible.text( collapsedIcon );
-        }
-
-        var $next = $commentWrapper.next();
-        while ( $next.length ) {
-            var nextIndentation = $next.find( 'td > table > tbody > tr > td:first > img' ).prop( 'width' );
-            if ( ! ( nextIndentation > indentation ) ) {
-                break;
-            }
-
-            if ( collapsed ) {
-                $next.show();
-            }
-            else {
-                $next.hide();
-            }
-
-            $next = $next.next();
-        }
-
-        $commentWrapper.data( 'collapsed', ! collapsed );
-    }
-
-    var commentsSelector = 'html > body > center > table > tbody > tr:nth-last-child(2) > td > table:last > tbody > tr';
-    $( commentsSelector ).each(function() {
-        var $commentWrapper = $(this);
-        console.info( 'comment wrapper', $commentWrapper );
-
-        var $parent = $commentWrapper.find( 'td > table > tbody > tr' );
-        console.log( 'parent', $parent );
-
-        var $spacer = $parent.find( 'td:first' )
-        console.log( 'spacer', $spacer );
-
-        var indentation = $spacer.find( 'img' ).prop( 'width' );
-        console.log( 'indentation', indentation );
-
-        var $vote = $parent.find( 'td[valign]' )
-        console.log( 'vote', $vote );
-
-        var $comment = $parent.find( 'td:last' )
-        console.log( 'comment', $comment );
-
-        var $commentBody = $comment.find( 'span.comment' );
-        console.log( 'comment body', $commentBody );
-        $commentBody.click(function( event ) {
-            console.log( 'comment body clicked', $(this) );
-
-            if ( $( event.target ).is( 'a' ) ) {
-                console.log( 'link in comment body clicked ');
-                return;
-            }
-
-            collapseChildren( $commentWrapper, indentation );
-        });
-        $commentBody.hover(function() {
-            $(this).parent( 'td.default' ).css( 'background-color', '#e0e0e0' );
-            $(this).css( 'cursor', 'pointer' ); // FIXME: Maybe move to css.
-            $(this).css( 'display', 'block' ); // FIXME: Move to css.
-        }, function() {
-            $(this).parent( 'td.default' ).css( 'background-color', '' );
-        });
-
-        console.log( '---' );
-    });
-} else {
-    console.info( 'other page' );
 }
 */
 
