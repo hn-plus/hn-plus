@@ -35,6 +35,22 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
     // Toggle comment collapse when comment is clicked.
     $(document).click(function(event) {
         var target = $(event.target);
+
+        // Open links in background tabs and allow link clicks without toggling
+        // comment collapse.
+        if ( event.target.nodeName === 'A' ) {
+            var linkUrl = target.prop('href');
+
+            // Ignore javascript links.
+            if ( linkUrl === 'javascript:void(0)' ) {
+                return;
+            }
+
+            openBackgroundTab(linkUrl);
+            event.preventDefault();
+            return;
+        }
+
         if ( target.hasClass('comment') ||
              target.parents('.comment').length ) {
             var comment = target.parents('.athing');

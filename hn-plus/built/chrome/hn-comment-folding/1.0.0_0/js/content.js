@@ -28,6 +28,15 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
     });
     $(document).click(function(event) {
         var target = $(event.target);
+        if ( event.target.nodeName === 'A' ) {
+            var linkUrl = target.prop('href');
+            if ( linkUrl === 'javascript:void(0)' ) {
+                return;
+            }
+            openBackgroundTab(linkUrl);
+            event.preventDefault();
+            return;
+        }
         if ( target.hasClass('comment') ||
              target.parents('.comment').length ) {
             var comment = target.parents('.athing');
