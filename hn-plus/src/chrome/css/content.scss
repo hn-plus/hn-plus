@@ -1,10 +1,17 @@
 // Slightly modified from chrome-extension://adjiapocadpdcoddlochkhmhmlhgbpjn/lib/extras/hn_theme_light.css
 // Modifications:
+// - Custom styles
 // - :%s/.hnspecial-theme / /g
 // - Added custom styles section
 // - Modified rules for selector: html p { ... }
+// - Distinct link: #ffac5b => orange
+// - Distinct visited link: #ffa15f => #909090;
 
 // BEGIN custom styles.
+
+#hnmain {
+    border-left: 1px dotted #333;
+}
 
 // Hide logo and name.
 #hnmain > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(1),
@@ -57,7 +64,7 @@ span.comment:not(.noshow) {
 }
 
 .hnspecial-settings-menu-inner .hnspecial-settings-tip button,html .hnspecial-mark-all-as-read-container button,html .hnspecial-fold-comment-button {
-    color: #ffac5b
+    color: orange
 }
 
 html input[type=submit],html input[type=button],html button.hnspecial-button {
@@ -199,7 +206,7 @@ html input[type=submit]:active,html input[type=button]:active,html button.hnspec
 }
 
 .hnspecial-settings-menu-inner p a,.hnspecial-settings-menu-inner .hnspecial-settings-tip a {
-    color: #ffac5b !important;
+    color: orange !important;
     font-weight: 400 !important;
     letter-spacing: 0 !important
 }
@@ -344,7 +351,7 @@ html u {
 }
 
 html a {
-    color: #ffac5b;
+    color: orange;
     text-decoration: none
 }
 
@@ -737,11 +744,11 @@ html body > center > table > tbody > tr:nth-child(3) > td td.title + td {
 }
 
 html body > center > table > tbody > tr:nth-child(3) > td td.title a {
-    color: #ffac5b;
+    color: orange;
 }
 
 html body > center > table > tbody > tr:nth-child(3) > td td.title a:visited {
-    color: #ffa15f
+    color: #909090;
 }
 
 html body > center > table > tbody > tr:nth-child(3) > td td.subtext {
