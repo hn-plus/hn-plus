@@ -51,6 +51,12 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
             return;
         }
 
+        // Avoid collapsing comment when selections are made.
+        if ( ! ( window.getSelection().toString() === '' ) ) {
+            console.log('selection made');
+            return;
+        }
+
         if ( target.hasClass('comment') ||
              target.parents('.comment').length ) {
             var comment = target.parents('.athing');
