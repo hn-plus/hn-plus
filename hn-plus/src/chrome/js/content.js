@@ -25,13 +25,6 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
     console.info('item page');
 
-    // Open item links in background tab.
-    $('#hnmain > tbody > tr:nth-child(3) > td > table:nth-child(1) a').click(function(event) {
-        event.preventDefault();
-        var linkUrl = $(this).prop('href');
-        openBackgroundTab(linkUrl);
-    });
-
     // Toggle comment collapse when comment is clicked.
     $(document).click(function(event) {
         var target = $(event.target);

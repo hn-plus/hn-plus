@@ -21,11 +21,6 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
     });
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
     console.info('item page');
-    $('#hnmain > tbody > tr:nth-child(3) > td > table:nth-child(1) a').click(function(event) {
-        event.preventDefault();
-        var linkUrl = $(this).prop('href');
-        openBackgroundTab(linkUrl);
-    });
     $(document).click(function(event) {
         var target = $(event.target);
         if ( event.target.nodeName === 'A' ) {
