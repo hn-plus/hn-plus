@@ -85,6 +85,9 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
             });
         });
     }
+    var pointsLinks = $('.score');
+    var re = /(\d+) points/;
+    colorscaleNodes(pointsLinks, re);
     var commentLinks = $('a[href^=item]:nth-child(2n+0)');
     var re = /(\d+)\xa0comments/;
     colorscaleNodes(commentLinks, re);
