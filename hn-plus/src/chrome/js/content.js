@@ -50,55 +50,58 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
         };
     }
 
-    var commentLinks = $('a[href^=item]:nth-child(2n+0)');
-    var max = 0;
-    var commentLinksList = [];
-    commentLinks.each(function() {
-        var str = $(this).text();
-        var re = /(\d+)\xa0comments/;
-        var found = str.match(re);
-        if ( found ) {
-            var commentCount = parseInt(found['1']);
-            if ( commentCount > max ) {
-                max = commentCount;
-                console.log('max is now: %s', max);
+    function colorscaleNodes(nodes, re) {
+        var max = 0;
+        var nodesList = [];
+        nodes.each(function() {
+            var str = $(this).text();
+            var found = str.match(re);
+            if ( found ) {
+                var count = parseInt(found['1']);
+                if ( count > max ) {
+                    max = count;
+                    console.log('max is now: %s', max);
+                }
+                nodesList.push([$(this), count]);
             }
-            commentLinksList.push([$(this), commentCount]);
-        }
-    });
-
-    $(commentLinksList).each(function() {
-        var node = $(this)[0];
-        var commentCount = $(this)[1];
-        var val = commentCount / max * 100;
-
-        if ( ! ( val > 15 ) ) {
-            return true; // "continue"
-        }
-
-        var red = new Color(230, 124, 115); // #e67c73
-        var yellow = new Color(255, 214, 102); // #ffd666
-        var green = new Color(87, 187, 138); // #57bb8a
-        var start = green;
-        var end = yellow;
-
-        if ( val > 50 ) {
-            start = yellow;
-            end = red;
-            val = val % 51;
-        }
-        var startColors = start.getColors();
-        var endColors = end.getColors();
-        var r = Interpolate(startColors.r, endColors.r, 50, val);
-        var g = Interpolate(startColors.g, endColors.g, 50, val);
-        var b = Interpolate(startColors.b, endColors.b, 50, val);
-
-        node.css({
-            color: '#000',
-            backgroundColor: 'rgb(' + r + ',' + g + ',' + b + ')',
         });
-    });
 
+        $(nodesList).each(function() {
+            var node = $(this)[0];
+            var count = $(this)[1];
+            var val = count / max * 100;
+
+            if ( ! ( val > 15 ) ) {
+                return true; // "continue"
+            }
+
+            var red = new Color(230, 124, 115); // #e67c73
+            var yellow = new Color(255, 214, 102); // #ffd666
+            var green = new Color(87, 187, 138); // #57bb8a
+            var start = green;
+            var end = yellow;
+
+            if ( val > 50 ) {
+                start = yellow;
+                end = red;
+                val = val % 51;
+            }
+            var startColors = start.getColors();
+            var endColors = end.getColors();
+            var r = Interpolate(startColors.r, endColors.r, 50, val);
+            var g = Interpolate(startColors.g, endColors.g, 50, val);
+            var b = Interpolate(startColors.b, endColors.b, 50, val);
+
+            node.css({
+                color: '#000',
+                backgroundColor: 'rgb(' + r + ',' + g + ',' + b + ')',
+            });
+        });
+    }
+
+    var commentLinks = $('a[href^=item]:nth-child(2n+0)');
+    var re = /(\d+)\xa0comments/;
+    colorscaleNodes(commentLinks, re);
 
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
     console.info('item page');
