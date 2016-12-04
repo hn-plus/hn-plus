@@ -22,6 +22,84 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
             openBackgroundTab(linkUrl);
         });
     });
+
+    // Colorscale for comments.
+    function Interpolate(start, end, steps, count) {
+        var s = start;
+        var e = end;
+        final = s + (((e - s) / steps) * count);
+        return Math.floor(final);
+    }
+
+    function Color(_r, _g, _b) {
+        var r, g, b;
+        var setColors = function(_r, _g, _b) {
+            r = _r;
+            g = _g;
+            b = _b;
+        };
+
+        setColors(_r, _g, _b);
+        this.getColors = function() {
+            var colors = {
+                r: r,
+                g: g,
+                b: b
+            };
+            return colors;
+        };
+    }
+
+    var commentLinks = $('a[href^=item]:nth-child(2n+0)');
+    var max = 0;
+    var commentLinksList = [];
+    commentLinks.each(function() {
+        var str = $(this).text();
+        var re = /(\d+)\xa0comments/;
+        var found = str.match(re);
+        if ( found ) {
+            var commentCount = parseInt(found['1']);
+            if ( commentCount > max ) {
+                max = commentCount;
+                console.log('max is now: %s', max);
+            }
+            commentLinksList.push([$(this), commentCount]);
+        }
+    });
+
+    $(commentLinksList).each(function() {
+        var node = $(this)[0];
+        var commentCount = $(this)[1];
+        var val = commentCount / max * 100;
+
+        if ( ! ( val > 15 ) ) {
+            return true; // "continue"
+        }
+
+        var red = new Color(230, 124, 115); // #e67c73
+        var yellow = new Color(255, 214, 102); // #ffd666
+        var green = new Color(87, 187, 138); // #57bb8a
+        var start = green;
+        var end = yellow;
+
+        if ( val > 50 ) {
+            start = yellow;
+            end = red;
+            val = val % 51;
+        }
+        var startColors = start.getColors();
+        var endColors = end.getColors();
+        var r = Interpolate(startColors.r, endColors.r, 50, val);
+        var g = Interpolate(startColors.g, endColors.g, 50, val);
+        var b = Interpolate(startColors.b, endColors.b, 50, val);
+
+        node.css({
+            color: '#000',
+            backgroundColor: 'rgb(' + r + ',' + g + ',' + b + ')',
+        });
+    });
+
+
 } else if ( /^https:\/\/news\.ycombinator\.com\/item\?id=/.test( url ) ) {
     console.info('item page');
 
