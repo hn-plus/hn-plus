@@ -281,7 +281,7 @@ html u {
   text-decoration: none;
 }
 html a {
-  color: orange;
+  color: #999;
   text-decoration: none;
 }
 html a:hover {
@@ -595,7 +595,7 @@ html body > center > table > tbody > tr:nth-child(3) > td td.title + td {
   padding: 0 13px 3px 10px;
 }
 html body > center > table > tbody > tr:nth-child(3) > td td.title a {
-  color: orange;
+  color: #d68b00;
 }
 html body > center > table > tbody > tr:nth-child(3) > td td.title a:visited {
   color: #909090;
