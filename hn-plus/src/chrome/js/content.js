@@ -10,7 +10,7 @@ function openBackgroundTab(url) {
 
 var url = window.location.toString();
 
-if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
+if ( /^https:\/\/news\.ycombinator\.com\/(news|ask)?$/.test(url) ) {
     console.info('home page');
 
     // Open page links in background tabs.
@@ -27,7 +27,7 @@ if ( /^https:\/\/news\.ycombinator\.com\/(news)?$/.test(url) ) {
     function Interpolate(start, end, steps, count) {
         var s = start;
         var e = end;
-        final = s + (((e - s) / steps) * count);
+        var final = s + (((e - s) / steps) * count);
         return Math.floor(final);
     }
 
