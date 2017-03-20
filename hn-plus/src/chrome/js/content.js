@@ -9,9 +9,14 @@ function openBackgroundTab(url) {
 }
 
 var url = window.location.toString();
+var parser = document.createElement('a');
+parser.href = url;
+var pathname = parser.pathname;
 
-if ( /^https:\/\/news\.ycombinator\.com\/(news|ask)?$/.test(url) ) {
-    console.info('home page');
+if ( pathname === '/' ||
+     pathname === '/news' ||
+     pathname === '/ask' ) {
+    console.log('/, /news, or /ask');
 
     // Open page links in background tabs.
     $('.itemlist a').each(function() {

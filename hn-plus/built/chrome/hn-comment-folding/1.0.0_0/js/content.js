@@ -1,4 +1,4 @@
-/*! Example v1.0.0 | (c) 2016 Example, Inc. | example.com/license */
+/*! Example v1.0.0 | (c) 2017 Example, Inc. | example.com/license */
 function openBackgroundTab(url) {
     console.info('openBackgroundTab:', url);
     chrome.runtime.sendMessage({
@@ -9,8 +9,13 @@ function openBackgroundTab(url) {
     });
 }
 var url = window.location.toString();
-if ( /^https:\/\/news\.ycombinator\.com\/(news|ask)?$/.test(url) ) {
-    console.info('home page');
+var parser = document.createElement('a');
+parser.href = url;
+var pathname = parser.pathname;
+if ( pathname === '/' ||
+     pathname === '/news' ||
+     pathname === '/ask' ) {
+    console.log('/, /news, or /ask');
     $('.itemlist a').each(function() {
         $(this).click(function(event) {
             console.log(event.target);
