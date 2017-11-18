@@ -13,9 +13,10 @@ var parser = document.createElement('a');
 parser.href = url;
 var pathname = parser.pathname;
 if ( pathname === '/' ||
+     pathname === '/best' ||
      pathname === '/news' ||
      pathname === '/ask' ) {
-    console.log('/, /news, or /ask');
+    console.log('/, /best, /news, or /ask');
     $('.itemlist a').each(function() {
         $(this).click(function(event) {
             console.log(event.target);

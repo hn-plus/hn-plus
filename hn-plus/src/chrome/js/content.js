@@ -14,9 +14,10 @@ parser.href = url;
 var pathname = parser.pathname;
 
 if ( pathname === '/' ||
+     pathname === '/best' ||
      pathname === '/news' ||
      pathname === '/ask' ) {
-    console.log('/, /news, or /ask');
+    console.log('/, /best, /news, or /ask');
 
     // Open page links in background tabs.
     $('.itemlist a').each(function() {
