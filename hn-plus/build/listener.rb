@@ -1,7 +1,7 @@
 #!/usr/bin/env ruby
 
 # Watch for file changes to source and build.
-# Requires listen: `gem install -i . listen'
+# Requires listen: `gem install listen'
 
 require 'listen'
 

@@ -122,8 +122,10 @@ if ( pathname === '/' ||
         }
     });
 }
+
 // Remove existing stylesheet.
 var stylesheet = document.querySelector('link[rel="stylesheet"]');
 stylesheet.parentNode.removeChild(stylesheet);
+
 // Remove existing background color.
 document.querySelector('table[bgcolor]').removeAttribute('bgcolor');
