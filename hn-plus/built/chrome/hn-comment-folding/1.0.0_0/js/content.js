@@ -1,4 +1,4 @@
-/*! Example v1.0.0 | (c) 2017 Example, Inc. | example.com/license */
+/*! Example v1.0.0 | (c) 2018 Example, Inc. | example.com/license */
 function openBackgroundTab(url) {
     console.info('openBackgroundTab:', url);
     chrome.runtime.sendMessage({
@@ -122,10 +122,8 @@ if ( pathname === '/' ||
         }
     });
 }
-
 // Remove existing stylesheet.
 var stylesheet = document.querySelector('link[rel="stylesheet"]');
 stylesheet.parentNode.removeChild(stylesheet);
-
 // Remove existing background color.
 document.querySelector('table[bgcolor]').removeAttribute('bgcolor');
