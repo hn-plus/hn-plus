@@ -11,6 +11,7 @@
 
 #hnmain {
     border-left: 1px dotted #333;
+    width: 100% !important;
 }
 
 // Hide logo and name.
@@ -44,6 +45,11 @@ span.comment:not(.noshow) {
     &:hover {
         background-color: #ddd;
     }
+}
+
+// Highlight comment on hover.
+.comment:hover {
+    outline: 1px solid rgba(0, 0, 0, .2);
 }
 
 // END custom styles.
@@ -531,7 +537,6 @@ html .hnspecial-theme-topcolor-preview {
 
 html body > center {
     display: block;
-    max-width: 900px;
     margin: 0 auto;
 }
 

@@ -1,6 +1,7 @@
 /*! Example v1.0.0 | (c) 2018 Example, Inc. | example.com/license */
 #hnmain {
   border-left: 1px dotted #333;
+  width: 100% !important;
 }
 #hnmain > tbody > tr:nth-child(1) > td > table > tbody > tr > td:nth-child(1),
 .hnname {
@@ -24,6 +25,9 @@ span.comment:not(.noshow) {
 }
 span.comment:not(.noshow):hover {
   background-color: #ddd;
+}
+.comment:hover {
+  outline: 1px solid rgba(0, 0, 0, 0.2);
 }
 .hnspecial-settings-menu-inner .hnspecial-settings-tip button, html .hnspecial-mark-all-as-read-container button, .hnspecial-fold-comment-button {
   font: inherit;
@@ -426,7 +430,6 @@ html .hnspecial-theme-topcolor-preview {
 }
 html body > center {
   display: block;
-  max-width: 900px;
   margin: 0 auto;
 }
 html body > center > table {
